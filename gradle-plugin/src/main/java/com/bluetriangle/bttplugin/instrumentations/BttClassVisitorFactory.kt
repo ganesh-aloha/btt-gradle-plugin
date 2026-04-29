@@ -6,6 +6,7 @@ import com.android.build.api.instrumentation.ClassData
 import com.android.build.api.instrumentation.InstrumentationParameters
 import com.bluetriangle.bttplugin.instrumentations.compose.navcontroller.NavControllerClassInstrumentation
 import com.bluetriangle.bttplugin.instrumentations.compose.navdisplay.NavDisplayInstrumentation
+import com.bluetriangle.bttplugin.util.Version
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
 import org.objectweb.asm.ClassVisitor

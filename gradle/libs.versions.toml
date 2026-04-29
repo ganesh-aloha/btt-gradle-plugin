@@ -9,7 +9,8 @@ composeBom = "2024.06.00"
 activityCompose = "1.9.0"
 lifecycleRuntimeKtx = "2.8.4"
 jetbrainsKotlinJvm = "2.2.10"
-bttFork = "7a2a7e77fd"
+bttFork = "acff3e1b4f"
+btt = "2.19.3"
 navigationCompose = "2.9.6"
 kotlinxSerializationJson = "1.7.3"
 nav3Core = "1.0.1"
@@ -30,6 +31,7 @@ androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-
 androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 fork-btt-android-sdk = { module = "com.github.IsmailAloha:btt-android-sdk", version.ref = "bttFork"}
+btt-android-sdk = { module = "com.github.blue-triangle-tech:btt-android-sdk", version.ref = "btt"}
 navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
