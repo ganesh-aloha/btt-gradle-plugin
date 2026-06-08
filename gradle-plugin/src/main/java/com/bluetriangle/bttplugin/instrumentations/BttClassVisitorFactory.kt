@@ -4,6 +4,7 @@ import com.android.build.api.instrumentation.AsmClassVisitorFactory
 import com.android.build.api.instrumentation.ClassContext
 import com.android.build.api.instrumentation.ClassData
 import com.android.build.api.instrumentation.InstrumentationParameters
+import com.bluetriangle.bttplugin.instrumentations.compose.decompose.DecomposeClassInstrumentation
 import com.bluetriangle.bttplugin.instrumentations.compose.navcontroller.NavControllerClassInstrumentation
 import com.bluetriangle.bttplugin.instrumentations.compose.navdisplay.NavDisplayInstrumentation
 import com.bluetriangle.bttplugin.util.Version
@@ -13,13 +14,15 @@ import org.objectweb.asm.ClassVisitor
 
 interface ByteCodeManipulationParameters: InstrumentationParameters {
     @get:Input val composeNavigationInjectionEnabled: Property<Boolean>
+    @get:Input val decomposeVersionSupported: Property<Boolean>
 }
 
 abstract class BttClassVisitorFactory: AsmClassVisitorFactory<ByteCodeManipulationParameters> {
 
     private fun getInstrumentations() = listOf(
         NavControllerClassInstrumentation(),
-        NavDisplayInstrumentation()
+        NavDisplayInstrumentation(),
+        DecomposeClassInstrumentation()
     )
 
     override fun createClassVisitor(

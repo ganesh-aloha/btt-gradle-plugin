@@ -4,6 +4,7 @@ import com.android.build.api.instrumentation.InstrumentationScope
 import com.android.build.api.variant.AndroidComponentsExtension
 import com.android.build.api.variant.Variant
 import com.bluetriangle.bttplugin.instrumentations.BttClassVisitorFactory
+import com.bluetriangle.bttplugin.instrumentations.compose.decompose.DecomposeVersionResolver
 import com.bluetriangle.bttplugin.util.SdkResolver
 import com.bluetriangle.bttplugin.util.Version
 import com.bluetriangle.bttplugin.util.version
@@ -48,6 +49,7 @@ class BttPlugin : Plugin<Project> {
 
     fun registerInstrumentation(project: Project, variant: Variant, extension: BttPluginExtension) {
         val sdkVersion = SdkResolver.resolve(project)
+        val decomposeVersion = DecomposeVersionResolver.resolve(project)
         println("BttPlugin: sdkVersion: ${sdkVersion.get()}")
         variant.instrumentation.transformClassesWith(
             BttClassVisitorFactory::class.java,
@@ -57,6 +59,10 @@ class BttPlugin : Plugin<Project> {
                 extension.composeNavigationInjectionEnabled.map {
                     sdkVersion.get().sdkVersion >= "2.19.5" && it
                 }
+            )
+
+            parameters.decomposeVersionSupported.set(
+                decomposeVersion.map { DecomposeVersionResolver.isVersionSupported(it) }
             )
         }
     }
