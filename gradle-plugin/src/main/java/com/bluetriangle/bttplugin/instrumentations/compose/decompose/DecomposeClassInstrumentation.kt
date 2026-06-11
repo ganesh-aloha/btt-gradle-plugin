@@ -17,8 +17,9 @@ class DecomposeClassInstrumentation : BttClassInstrumentation() {
 
     override fun getVisitor(
         classContext: ClassContext,
-        nextClassVisitor: ClassVisitor
-    ): ClassVisitor = DecomposeClassVisitor(nextClassVisitor)
+        nextClassVisitor: ClassVisitor,
+        debugLog: Boolean
+    ): ClassVisitor = DecomposeClassVisitor(nextClassVisitor, debugLog)
 
     override val className: String
         get() = CHILDREN_KT_CLASSNAME

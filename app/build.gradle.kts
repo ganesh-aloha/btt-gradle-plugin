@@ -5,6 +5,11 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization") version "2.2.10"
 }
 
+bttOptions {
+    composeNavigationInjectionEnabled = true
+    debugLog = true
+}
+
 android {
     namespace = "com.bluetriangle.sampleapp"
     compileSdk = 36
@@ -58,8 +63,4 @@ dependencies {
 
     implementation(libs.navigation.compose)
     implementation(libs.kotlinx.serialization.json)
-}
-
-btt {
-    composeNavigationInjectionEnabled = true
 }

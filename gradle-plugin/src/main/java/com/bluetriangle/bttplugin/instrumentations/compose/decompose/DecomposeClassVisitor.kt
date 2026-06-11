@@ -6,8 +6,8 @@ import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.Opcodes
 
 class DecomposeClassVisitor(
-    cv: ClassVisitor
-) : BttClassVisitor(cv) {
+    nextClassVisitor: ClassVisitor, private val debugLog: Boolean = false
+) : BttClassVisitor(nextClassVisitor) {
 
     override fun visitMethod(
         access: Int,
@@ -18,7 +18,14 @@ class DecomposeClassVisitor(
     ): MethodVisitor {
         val mv = super.visitMethod(access, name, descriptor, signature, exceptions)
         if (name == "childStack") {
-            return DecomposeMethodVisitor(Opcodes.ASM9, mv, access, name, descriptor)
+            return DecomposeMethodVisitor(
+                Opcodes.ASM9,
+                mv,
+                access,
+                name,
+                descriptor,
+                debugLog
+            )
         }
 
         return mv

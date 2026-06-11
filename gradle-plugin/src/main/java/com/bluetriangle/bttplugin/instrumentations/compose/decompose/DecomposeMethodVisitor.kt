@@ -8,7 +8,8 @@ class DecomposeMethodVisitor(
     mv: MethodVisitor,
     access: Int,
     name: String,
-    descriptor: String
+    descriptor: String,
+    private val debugLog: Boolean = false
 ) : AdviceAdapter(api, mv, access, name, descriptor) {
 
     override fun visitMethodInsn(

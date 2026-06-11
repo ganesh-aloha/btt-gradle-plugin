@@ -19,9 +19,10 @@ class NavControllerClassInstrumentation :
 
     override fun getVisitor(
         classContext: ClassContext,
-        nextClassVisitor: ClassVisitor
+        nextClassVisitor: ClassVisitor,
+        debugLog: Boolean
     ): ClassVisitor {
-        return NavControllerClassVisitor(nextClassVisitor)
+        return NavControllerClassVisitor(nextClassVisitor, debugLog)
     }
 
     override val className: String

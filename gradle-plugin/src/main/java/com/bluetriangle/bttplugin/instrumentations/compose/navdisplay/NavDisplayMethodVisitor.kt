@@ -15,7 +15,8 @@ class NavDisplayMethodVisitor(
     val methodVisitor: MethodVisitor,
     access: Int,
     name: String,
-    descriptor: String
+    descriptor: String,
+    private val debugLog: Boolean = false
 ) : AdviceAdapter(api, methodVisitor, access, name, descriptor) {
 
     override fun onMethodExit(opcode: Int) {
