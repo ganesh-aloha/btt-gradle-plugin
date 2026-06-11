@@ -5,10 +5,6 @@ import com.android.build.api.instrumentation.ClassContext
 import com.android.build.api.instrumentation.ClassData
 import com.android.build.api.instrumentation.InstrumentationParameters
 import com.bluetriangle.bttplugin.BttHelper
-import com.bluetriangle.bttplugin.instrumentations.compose.decompose.DecomposeClassInstrumentation
-import com.bluetriangle.bttplugin.instrumentations.compose.navcontroller.NavControllerClassInstrumentation
-import com.bluetriangle.bttplugin.instrumentations.compose.navdisplay.NavDisplayInstrumentation
-import com.bluetriangle.bttplugin.instrumentations.compose.voyager.VoyagerClassInstrumentation
 import com.bluetriangle.bttplugin.util.Version
 import com.bluetriangle.bttplugin.util.version
 import org.gradle.api.provider.Property
