@@ -16,8 +16,8 @@ import org.gradle.api.provider.Provider
 object BttHelper {
     private const val BTT_GROUP = "blue-triangle-tech"
     private const val BTT_ARTIFACT = "btt-android-sdk"
-    private const val BTT_SDK_SUPPORTED_VERSION = "2.19.5"
-    private const val BTT_SDK_DECOMPOSE_SUPPORTED_VERSION = "2.19.5"
+    private const val BTT_SDK_SUPPORTED_VERSION = "2.19.6"
+    private const val BTT_SDK_DECOMPOSE_SUPPORTED_VERSION = "2.19.6"
     private const val DECOMPOSE_GROUP = "com.arkivanov.decompose"
     private const val DECOMPOSE_ARTIFACT = "decompose"
     private const val DECOMPOSE_SUPPORTED_VERSION = "3.0.0"
