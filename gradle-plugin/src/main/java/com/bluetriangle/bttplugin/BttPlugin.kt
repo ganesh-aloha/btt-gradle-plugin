@@ -35,14 +35,17 @@ class BttPlugin : Plugin<Project> {
 
             project.tasks.matching { it.name.startsWith("assemble") }
                 .configureEach {
-                    doLast { println("BttPlugin started: $name") }
+                    doLast { Logger.log("Task :$name started") }
                 }
         }
     }
 
     fun registerInstrumentation(project: Project, variant: Variant, bttOptions: BttOptions) {
+        Logger.log("BttOptions::debugLog : ${bttOptions.debugLog.get()}")
+        Logger.log("BttOptions::composeNavigationInjectionEnabled : ${bttOptions.composeNavigationInjectionEnabled.get()}")
         val sdkVersion = BttHelper.resolveBttSdk(project)
-        println("BttPlugin: sdkVersion: ${sdkVersion.get()}")
+        Logger.log("Blue Triangle sdkVersion : ${sdkVersion.get()}")
+        val isSDKSupported = BttHelper.isBttSdkVersionSupported(sdkVersion.get())
 
         variant.instrumentation.transformClassesWith(
             BttClassVisitorFactory::class.java,
@@ -53,9 +56,7 @@ class BttPlugin : Plugin<Project> {
             parameters.debugLog.set(bttOptions.debugLog.map { it })
 
             parameters.composeNavigationInjectionEnabled.set(
-                bttOptions.composeNavigationInjectionEnabled.map {
-                    BttHelper.isBttSdkVersionSupported(sdkVersion.get()) && it
-                }
+                bttOptions.composeNavigationInjectionEnabled.map { isSDKSupported && it }
             )
 
             val decomposeVersion = BttHelper.resolveDecomposeLibrary(project)

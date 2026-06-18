@@ -45,6 +45,8 @@ object BttHelper {
                 }
             }
 
+            Logger.log("Blue Triangle SDK dependency is missing from app gradle file")
+
             return@provider SdkMetaData(
                 sdkMode = SdkMode.UNAVAILABLE,
                 sdkVersion = Version.ZERO
@@ -99,11 +101,17 @@ object BttHelper {
     }
 
     fun isBttSdkVersionSupported(data: SdkMetaData): Boolean {
-        return data.sdkVersion >= BTT_SDK_SUPPORTED_VERSION
+        val result = data.sdkVersion >= BTT_SDK_SUPPORTED_VERSION
+        if (data.sdkVersion != Version.ZERO && !result)
+            Logger.log("Blue Triangle SDK Version ${data.sdkVersion} is not supporting screen auto tracking, please upgrade to $BTT_SDK_SUPPORTED_VERSION or higher version")
+        return result
     }
 
     fun isDecomposeVersionSupported(data: SdkMetaData): Boolean {
-        return data.sdkVersion >= DECOMPOSE_SUPPORTED_VERSION
+        val result = data.sdkVersion >= DECOMPOSE_SUPPORTED_VERSION
+        if (data.sdkVersion != Version.ZERO && !result)
+            Logger.log("Decompose Version ${data.sdkVersion} not supported upgrade to $DECOMPOSE_SUPPORTED_VERSION")
+        return result
     }
 
     fun getSupportedInstrumentations(sdkVersion: Version): List<BttClassInstrumentation> {

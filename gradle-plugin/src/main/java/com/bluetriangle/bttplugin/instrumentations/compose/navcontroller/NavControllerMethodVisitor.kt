@@ -1,5 +1,6 @@
 package com.bluetriangle.bttplugin.instrumentations.compose.navcontroller
 
+import com.bluetriangle.bttplugin.Logger
 import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.Type
 import org.objectweb.asm.commons.AdviceAdapter
@@ -15,9 +16,10 @@ class NavControllerMethodVisitor(
 ) : AdviceAdapter(api, methodVisitor, access, name, descriptor) {
 
     override fun onMethodExit(opcode: Int) {
-        val replacementOwner = "Lcom/bluetriangle/analytics/compose/ComposeKt;"
+         val replacementOwner = "Lcom/bluetriangle/analytics/compose/ComposeKt;"
         val replacementName = "withBttNavigationTracker"
         val replacementDescriptor = "(Landroidx/navigation/NavHostController;Landroidx/compose/runtime/Composer;I)Landroidx/navigation/NavHostController;"
+        if (debugLog) Logger.log("NavControllerMethodVisitor - Visiting: $replacementOwner.$name$replacementDescriptor")
 
         loadArg(1)
         loadArg(2)

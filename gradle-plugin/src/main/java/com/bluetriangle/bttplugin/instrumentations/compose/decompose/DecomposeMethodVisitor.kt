@@ -1,5 +1,6 @@
 package com.bluetriangle.bttplugin.instrumentations.compose.decompose
 
+import com.bluetriangle.bttplugin.Logger
 import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.commons.AdviceAdapter
 
@@ -23,7 +24,7 @@ class DecomposeMethodVisitor(
 
         val isChildStackCall = owner.contains("ChildStackFactoryKt") && name == "childStack"
         if (isChildStackCall) {
-            println("BTT visiting: $owner.$name$descriptor")
+            if (debugLog) Logger.log("DecomposeMethodVisitor - Visiting: $owner.$name$descriptor")
             dup()
             visitMethodInsn(
                 INVOKESTATIC,
