@@ -9,8 +9,8 @@ class NavDisplayInstrumentation :
     BttClassInstrumentation() {
 
     companion object {
-        private const val NAV_HOST_CONTROLLER_CLASSNAME =
-            "androidx.navigation3.ui.NavDisplayKt"
+        const val INSTRUMENTATION_CLASS_NAME = "androidx.navigation3.ui.NavDisplayKt"
+        const val INSTRUMENTATION_METHOD_NAME = "NavDisplay"
     }
 
     override fun isEnabled(parameters: ByteCodeManipulationParameters): Boolean {
@@ -26,6 +26,5 @@ class NavDisplayInstrumentation :
     }
 
     override val className: String
-        get() = NAV_HOST_CONTROLLER_CLASSNAME
-
+        get() = INSTRUMENTATION_CLASS_NAME
 }

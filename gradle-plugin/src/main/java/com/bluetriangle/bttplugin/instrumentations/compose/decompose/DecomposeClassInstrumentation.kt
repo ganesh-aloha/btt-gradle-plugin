@@ -8,8 +8,8 @@ import org.objectweb.asm.ClassVisitor
 class DecomposeClassInstrumentation : BttClassInstrumentation() {
 
     companion object {
-        private const val CHILDREN_KT_CLASSNAME =
-            "com.arkivanov.decompose.router.stack.ChildStackFactoryKt"
+        const val INSTRUMENTATION_CLASS_NAME = "com.arkivanov.decompose.router.stack.ChildStackFactoryKt"
+        const val INSTRUMENTATION_METHOD_NAME = "childStack"
     }
 
     override fun isEnabled(parameters: ByteCodeManipulationParameters): Boolean =
@@ -22,5 +22,5 @@ class DecomposeClassInstrumentation : BttClassInstrumentation() {
     ): ClassVisitor = DecomposeClassVisitor(nextClassVisitor, debugLog)
 
     override val className: String
-        get() = CHILDREN_KT_CLASSNAME
+        get() = INSTRUMENTATION_CLASS_NAME
 }

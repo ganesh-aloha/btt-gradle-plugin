@@ -27,7 +27,7 @@ class NavDisplayMethodVisitor(
         val replacementName = "bttTrackBackStack"
         val replacementDescriptor = "(Landroidx/navigation3/scene/SceneState;Landroidx/compose/runtime/Composer;I)Landroidx/navigation3/scene/SceneState;"
 
-        if (debugLog) Logger.log("NavDisplayMethodVisitor - Visiting: $replacementOwner.$name$replacementDescriptor")
+        if (debugLog) Logger.log("Instrumented ${NavDisplayInstrumentation.INSTRUMENTATION_METHOD_NAME} method of ${NavDisplayInstrumentation.INSTRUMENTATION_CLASS_NAME} class")
 
         loadArg(0) // SceneState
         loadArg(8) // Composer

@@ -19,7 +19,8 @@ class NavControllerMethodVisitor(
          val replacementOwner = "Lcom/bluetriangle/analytics/compose/ComposeKt;"
         val replacementName = "withBttNavigationTracker"
         val replacementDescriptor = "(Landroidx/navigation/NavHostController;Landroidx/compose/runtime/Composer;I)Landroidx/navigation/NavHostController;"
-        if (debugLog) Logger.log("NavControllerMethodVisitor - Visiting: $replacementOwner.$name$replacementDescriptor")
+
+        if (debugLog) Logger.log("Instrumented ${NavControllerClassInstrumentation.INSTRUMENTATION_METHOD_NAME} method of ${NavControllerClassInstrumentation.INSTRUMENTATION_CLASS_NAME} class")
 
         loadArg(1)
         loadArg(2)

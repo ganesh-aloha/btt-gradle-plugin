@@ -35,7 +35,10 @@ class BttPlugin : Plugin<Project> {
 
             project.tasks.matching { it.name.startsWith("assemble") }
                 .configureEach {
-                    doLast { Logger.log("Task :$name started") }
+                    doLast {
+                        Logger.log("Task :$name completed")
+                        InstrumentationSummary.logSummary()
+                    }
                 }
         }
     }

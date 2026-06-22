@@ -24,7 +24,8 @@ class DecomposeMethodVisitor(
 
         val isChildStackCall = owner.contains("ChildStackFactoryKt") && name == "childStack"
         if (isChildStackCall) {
-            if (debugLog) Logger.log("DecomposeMethodVisitor - Visiting: $owner.$name$descriptor")
+            if (debugLog) Logger.log("Instrumented ${DecomposeClassInstrumentation.INSTRUMENTATION_METHOD_NAME} method of ${DecomposeClassInstrumentation.INSTRUMENTATION_CLASS_NAME} class")
+
             dup()
             visitMethodInsn(
                 INVOKESTATIC,
