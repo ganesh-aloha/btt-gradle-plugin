@@ -31,7 +31,7 @@ class DecomposeMethodVisitor(
                 INVOKESTATIC,
                 "com/bluetriangle/analytics/compose/DecomposeHook",
                 "bttTrackStack",
-                "(Lcom/arkivanov/decompose/value/Value;)V",
+                "(Ljava/lang/Object;)V",
                 false
             )
         }
