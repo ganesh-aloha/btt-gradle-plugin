@@ -2,18 +2,15 @@
 
 [![jitpack.io build status](https://jitpack.io/v/blue-triangle-tech/btt-gradle-plugin.svg)](https://jitpack.io/#blue-triangle-tech/btt-gradle-plugin)
 
-The Blue Triangle Gradle Plugin for Android to enables application screen autotracking for modren UI framworks.
+The Blue Triangle Gradle Plugin for Android to enables application screen autotracking for Compose.
 
 ## Supported Navigation Libraries
 - NavController
 - Nav3
-
-Coming Soon
 - Decompose
-- Voyager
  
 
-## Mandatory Integration Steps
+## How to Integrate
 
 ### Pluig-in 
 
