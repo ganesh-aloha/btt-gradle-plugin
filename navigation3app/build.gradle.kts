@@ -4,6 +4,11 @@ plugins {
     id("com.github.blue-triangle-tech.btt-gradle-plugin")
 }
 
+bttOptions {
+    composeNavigationInjectionEnabled = true
+    debugLog = true
+}
+
 android {
     namespace = "com.bluetriangle.navigation3app"
     compileSdk = 36
@@ -37,7 +42,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.fork.btt.android.sdk) {
+    implementation(libs.btt.android.sdk) {
         exclude("com.squareup.okhttp3")
     }
     implementation(libs.androidx.core.ktx)

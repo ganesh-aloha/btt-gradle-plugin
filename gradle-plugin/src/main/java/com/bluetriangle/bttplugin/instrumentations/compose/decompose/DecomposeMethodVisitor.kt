@@ -1,0 +1,40 @@
+package com.bluetriangle.bttplugin.instrumentations.compose.decompose
+
+import com.bluetriangle.bttplugin.Logger
+import org.objectweb.asm.MethodVisitor
+import org.objectweb.asm.commons.AdviceAdapter
+
+class DecomposeMethodVisitor(
+    api: Int,
+    mv: MethodVisitor,
+    access: Int,
+    name: String,
+    descriptor: String,
+    private val debugLog: Boolean = false
+) : AdviceAdapter(api, mv, access, name, descriptor) {
+
+    override fun visitMethodInsn(
+        opcode: Int,
+        owner: String,
+        name: String,
+        descriptor: String,
+        isInterface: Boolean
+    ) {
+        super.visitMethodInsn(opcode, owner, name, descriptor, isInterface)
+
+        val isChildStackCall = owner.contains("ChildStackFactoryKt") && name == "childStack"
+        if (isChildStackCall) {
+            if (debugLog) Logger.log("Instrumented ${DecomposeClassInstrumentation.INSTRUMENTATION_METHOD_NAME} method of ${DecomposeClassInstrumentation.INSTRUMENTATION_CLASS_NAME} class")
+
+            dup()
+            visitMethodInsn(
+                INVOKESTATIC,
+                "com/bluetriangle/analytics/compose/DecomposeHook",
+                "bttTrackStack",
+                "(Ljava/lang/Object;)V",
+                false
+            )
+        }
+    }
+}
+

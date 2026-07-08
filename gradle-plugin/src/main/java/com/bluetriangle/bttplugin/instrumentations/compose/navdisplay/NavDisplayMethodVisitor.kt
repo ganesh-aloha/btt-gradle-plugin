@@ -1,5 +1,6 @@
 package com.bluetriangle.bttplugin.instrumentations.compose.navdisplay
 
+import com.bluetriangle.bttplugin.Logger
 import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.Type
 import org.objectweb.asm.commons.AdviceAdapter
@@ -15,7 +16,8 @@ class NavDisplayMethodVisitor(
     val methodVisitor: MethodVisitor,
     access: Int,
     name: String,
-    descriptor: String
+    descriptor: String,
+    private val debugLog: Boolean = false
 ) : AdviceAdapter(api, methodVisitor, access, name, descriptor) {
 
     override fun onMethodExit(opcode: Int) {
@@ -24,6 +26,8 @@ class NavDisplayMethodVisitor(
         val replacementOwner = "Lcom/bluetriangle/analytics/compose/ComposeKt;"
         val replacementName = "bttTrackBackStack"
         val replacementDescriptor = "(Landroidx/navigation3/scene/SceneState;Landroidx/compose/runtime/Composer;I)Landroidx/navigation3/scene/SceneState;"
+
+        if (debugLog) Logger.log("Instrumented ${NavDisplayInstrumentation.INSTRUMENTATION_METHOD_NAME} method of ${NavDisplayInstrumentation.INSTRUMENTATION_CLASS_NAME} class")
 
         loadArg(0) // SceneState
         loadArg(8) // Composer

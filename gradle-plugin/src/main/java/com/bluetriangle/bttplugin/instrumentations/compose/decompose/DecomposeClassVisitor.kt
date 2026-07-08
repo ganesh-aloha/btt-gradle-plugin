@@ -1,32 +1,33 @@
-package com.bluetriangle.bttplugin.instrumentations.compose.navcontroller
+package com.bluetriangle.bttplugin.instrumentations.compose.decompose
 
 import com.bluetriangle.bttplugin.instrumentations.BttClassVisitor
 import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.Opcodes
 
-class NavControllerClassVisitor(
+class DecomposeClassVisitor(
     nextClassVisitor: ClassVisitor, private val debugLog: Boolean = false
 ) : BttClassVisitor(nextClassVisitor) {
+
     override fun visitMethod(
         access: Int,
-        name: String?,
-        descriptor: String?,
+        name: String,
+        descriptor: String,
         signature: String?,
-        exceptions: Array<out String?>?
-    ): MethodVisitor? {
+        exceptions: Array<out String>?
+    ): MethodVisitor {
         val mv = super.visitMethod(access, name, descriptor, signature, exceptions)
-
-        if (name == "rememberNavController" && mv != null) {
-            return NavControllerMethodVisitor(
-                Opcodes.ASM6,
+        if (name == "childStack") {
+            return DecomposeMethodVisitor(
+                Opcodes.ASM9,
                 mv,
                 access,
                 name,
-                descriptor ?: "",
+                descriptor,
                 debugLog
             )
         }
+
         return mv
     }
 }

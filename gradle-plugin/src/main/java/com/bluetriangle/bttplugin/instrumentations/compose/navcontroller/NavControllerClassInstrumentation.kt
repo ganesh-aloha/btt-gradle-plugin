@@ -9,8 +9,8 @@ class NavControllerClassInstrumentation :
     BttClassInstrumentation() {
 
     companion object {
-        private const val NAV_HOST_CONTROLLER_CLASSNAME =
-            "androidx.navigation.compose.NavHostControllerKt"
+        const val INSTRUMENTATION_CLASS_NAME = "androidx.navigation.compose.NavHostControllerKt"
+        const val INSTRUMENTATION_METHOD_NAME = "rememberNavController"
     }
 
     override fun isEnabled(parameters: ByteCodeManipulationParameters): Boolean {
@@ -19,12 +19,12 @@ class NavControllerClassInstrumentation :
 
     override fun getVisitor(
         classContext: ClassContext,
-        nextClassVisitor: ClassVisitor
+        nextClassVisitor: ClassVisitor,
+        debugLog: Boolean
     ): ClassVisitor {
-        return NavControllerClassVisitor(nextClassVisitor)
+        return NavControllerClassVisitor(nextClassVisitor, debugLog)
     }
 
     override val className: String
-        get() = NAV_HOST_CONTROLLER_CLASSNAME
-
+        get() = INSTRUMENTATION_CLASS_NAME
 }

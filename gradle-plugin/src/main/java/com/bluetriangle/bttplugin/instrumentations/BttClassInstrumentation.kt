@@ -9,7 +9,8 @@ abstract class BttClassInstrumentation {
 
     abstract fun getVisitor(
         classContext: ClassContext,
-        nextClassVisitor: ClassVisitor
+        nextClassVisitor: ClassVisitor,
+        debugLog: Boolean = false
     ): ClassVisitor
 
     abstract val className: String

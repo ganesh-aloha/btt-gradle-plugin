@@ -10,7 +10,7 @@ data class Version(
     val major: Int,
     val minor: Int = 0,
     val patch: Int = 0
-): Comparable<Version> {
+) : Comparable<Version> {
 
     companion object {
         val ZERO = Version(0, 0, 0)
@@ -47,6 +47,12 @@ fun String.version(): Version {
         parts.getOrElse(2) { 0 }
     )
 }
+
+val Version.isValidVersion: Boolean
+    get() = this > Version.ZERO
+
+val String.isValidVersion: Boolean
+    get() = this.version() > Version.ZERO
 
 data class SdkMetaData(
     val sdkMode: SdkMode,
