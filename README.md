@@ -5,10 +5,12 @@
 The Blue Triangle Gradle Plugin for Android to enables application screen autotracking for Compose.
 
 ## Supported Navigation Libraries
-- NavController
+- NavController with minimum Compose navigation version 2.8.7
 - Nav3
 - Decompose
- 
+
+**Minimum Requirements**
+- Blue Triangle Gradle Plugin required Android Gradle Plugin version 8.6.0 or higher
 
 ## How to Integrate
 
