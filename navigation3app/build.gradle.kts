@@ -42,7 +42,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.fork.btt.android.sdk) {
+    implementation(libs.btt.android.sdk) {
         exclude("com.squareup.okhttp3")
     }
     implementation(libs.androidx.core.ktx)
